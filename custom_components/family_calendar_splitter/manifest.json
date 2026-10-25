@@ -1,0 +1,22 @@
+{
+  "domain": "family_calendar_splitter",
+  "name": "Household Calendar Splitter",
+  "after_dependencies": [
+    "google",
+    "caldav",
+    "local_calendar"
+  ],
+  "codeowners": [
+    "@duncanjmck"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "calendar"
+  ],
+  "documentation": "https://github.com/duncanjmck/household-calendar-splitter",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/duncanjmck/household-calendar-splitter/issues",
+  "requirements": [],
+  "single_config_entry": true,
+  "version": "0.6.0"
+}

@@ -1,0 +1,7 @@
+preview_title:
+  fields:
+    title:
+      required: true
+      example: "Oscar and Felix - swimming"
+      selector:
+        text:

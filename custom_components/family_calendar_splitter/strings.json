@@ -1,0 +1,169 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Household Calendar Splitter",
+        "description": "Choose the calendars to read events from. You can add people now or later; each person gets a read-only calendar of the events that mention them.",
+        "data": {
+          "source_calendars": "Source calendars",
+          "people": "People"
+        },
+        "data_description": {
+          "source_calendars": "Existing calendars, e.g. from Google Calendar. They are never changed.",
+          "people": "One name per line. Add nicknames and groups afterwards from the integration page."
+        }
+      }
+    },
+    "error": {
+      "invalid_household": "{error}"
+    },
+    "abort": {
+      "already_configured": "Household Calendar Splitter is already set up.",
+      "single_instance_allowed": "Household Calendar Splitter is already set up."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Household settings",
+        "data": {
+          "source_calendars": "Source calendars",
+          "mode": "How names are recognised",
+          "joiner_words": "Words that join names",
+          "leading_words": "Words removed before a name",
+          "strip_names": "Remove names from event titles",
+          "unassigned_name": "Calendar name for everything else",
+          "remove_duplicates": "Remove duplicate events"
+        },
+        "data_description": {
+          "joiner_words": "e.g. and, so \"Oscar and Felix\" means both. Commas, &, + and / always join names.",
+          "leading_words": "e.g. with, so \"Lunch with Isla\" becomes \"Lunch\" on Isla's calendar.",
+          "strip_names": "Off keeps titles exactly as written on every calendar.",
+          "unassigned_name": "Events that mention nobody appear on this calendar.",
+          "remove_duplicates": "When the same event is on more than one source calendar, show it once on each person's calendar. Shared events still appear on every person they mention."
+        }
+      }
+    },
+    "error": {
+      "invalid_household": "{error}"
+    }
+  },
+  "config_subentries": {
+    "person": {
+      "entry_type": "Person",
+      "initiate_flow": {
+        "user": "Add person",
+        "reconfigure": "Edit person"
+      },
+      "step": {
+        "user": {
+          "title": "Add person",
+          "data": {
+            "name": "Name",
+            "aliases": "Other names",
+            "icon": "Icon",
+            "case_sensitive": "Match capitalisation exactly"
+          },
+          "data_description": {
+            "name": "Shown as the calendar's name. Always recognised in event titles.",
+            "aliases": "Nicknames or spellings that also mean this person, e.g. Ozzie.",
+            "case_sensitive": "Only match names written exactly as entered, so \"Will\" matches but \"will\" does not. Useful when a name is also an ordinary word."
+          }
+        },
+        "reconfigure": {
+          "title": "Edit person",
+          "data": {
+            "name": "Name",
+            "aliases": "Other names",
+            "icon": "Icon",
+            "case_sensitive": "Match capitalisation exactly"
+          },
+          "data_description": {
+            "name": "Shown as the calendar's name. Always recognised in event titles.",
+            "aliases": "Nicknames or spellings that also mean this person, e.g. Ozzie.",
+            "case_sensitive": "Only match names written exactly as entered, so \"Will\" matches but \"will\" does not. Useful when a name is also an ordinary word."
+          }
+        },
+        "common_word": {
+          "title": "Name is also an everyday word",
+          "description": "{words} is also an ordinary word, so events like \"rose ribbon\" or \"will call\" could be put on this person's calendar.\n\nMatching capitalisation exactly avoids most of these. You can also change how names are recognised in the household settings.",
+          "data": {
+            "case_sensitive": "Match capitalisation exactly"
+          }
+        }
+      },
+      "error": {
+        "invalid_household": "{error}"
+      },
+      "abort": {
+        "reconfigure_successful": "Person updated."
+      }
+    },
+    "group": {
+      "entry_type": "Group",
+      "initiate_flow": {
+        "user": "Add group",
+        "reconfigure": "Edit group"
+      },
+      "step": {
+        "user": {
+          "title": "Add group",
+          "data": {
+            "words": "Group words",
+            "everyone": "Everyone in the household",
+            "members": "Members",
+            "case_sensitive": "Match capitalisation exactly"
+          },
+          "data_description": {
+            "words": "Words in an event title that mean this group, e.g. kids or boys.",
+            "everyone": "Always includes every person, including people added later.",
+            "members": "Ignored when Everyone is on."
+          }
+        },
+        "reconfigure": {
+          "title": "Edit group",
+          "data": {
+            "words": "Group words",
+            "everyone": "Everyone in the household",
+            "members": "Members",
+            "case_sensitive": "Match capitalisation exactly"
+          },
+          "data_description": {
+            "words": "Words in an event title that mean this group, e.g. kids or boys.",
+            "everyone": "Always includes every person, including people added later.",
+            "members": "Ignored when Everyone is on."
+          }
+        }
+      },
+      "error": {
+        "invalid_household": "{error}",
+        "no_words": "Enter at least one group word.",
+        "no_members": "Choose at least one member, or turn on Everyone."
+      },
+      "abort": {
+        "reconfigure_successful": "Group updated."
+      }
+    }
+  },
+  "selector": {
+    "mode": {
+      "options": {
+        "anywhere": "Anywhere in the title (\"Swim with Oscar\")",
+        "leading": "At the start of the title (\"Oscar - swim\")",
+        "tagged": "Only when tagged (\"Oscar: swim\" or \"[Oscar] swim\")"
+      }
+    }
+  },
+  "services": {
+    "preview_title": {
+      "name": "Preview event title",
+      "description": "Shows which calendars an event with this title would appear on, and the title they would show. Changes nothing.",
+      "fields": {
+        "title": {
+          "name": "Event title",
+          "description": "The title as it would be written in the source calendar."
+        }
+      }
+    }
+  }
+}
