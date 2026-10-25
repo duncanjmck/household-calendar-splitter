@@ -6,9 +6,6 @@
     "caldav",
     "local_calendar"
   ],
-  "categories": [
-    "productivity_information.calendars_todos"
-  ],
   "codeowners": [
     "@duncanjmck"
   ],
